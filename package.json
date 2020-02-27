@@ -2,10 +2,17 @@
   "name": "segment_builder",
   "version": "0.1.0",
   "private": true,
+  "author": "Victor Ragojos",
   "dependencies": {
+    "@material-ui/core": "^4.9.4",
+    "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
+    "formik": "^2.1.4",
+    "framer-motion": "^1.8.4",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.4.0"

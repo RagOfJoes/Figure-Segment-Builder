@@ -27,7 +27,6 @@ export default () => {
 	const handleDelete = index => {
 		const newSegments = segments;
 		const indexOf = newSegments.indexOf(index);
-		console.log(index, indexOf);
 
 		if (indexOf === -1) return;
 

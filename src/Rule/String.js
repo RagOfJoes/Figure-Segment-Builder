@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const values = ['contain', 'not contain', 'extacly match', 'not exactly match'];
+const values = ['contain', 'not contain', 'exactly match', 'not exactly match'];
 
 export default ({ onChange, conditionSelection }) => {
 	const classes = useStyles();

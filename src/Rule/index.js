@@ -2,6 +2,7 @@ import String from './String';
 import CustomSelect from './Select';
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
+import DateTimePicker from './DateTimePicker';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -54,9 +55,8 @@ export default ({ index, onOr, onDelete, showOrButton }) => {
 			direction="row"
 			alignItems="center"
 			justify="space-between"
-			className={classes['container']}
-		>
-			<Grid item container spacing={3} direction="row" alignItems="center">
+			className={classes['container']}>
+			<Grid item container spacing={3} wrap="nowrap" direction="row" alignItems="center">
 				<Grid item>
 					<FormControl className={classes['formControl']}>
 						<InputLabel id="key">Rule #{index}</InputLabel>
@@ -64,8 +64,7 @@ export default ({ index, onOr, onDelete, showOrButton }) => {
 							labelId="key"
 							value={keySelection}
 							MenuProps={{ variant: 'menu' }}
-							onChange={({ target: { value } }) => toggleKey(value)}
-						>
+							onChange={({ target: { value } }) => toggleKey(value)}>
 							{Object.keys(config).map(k => {
 								return (
 									<MenuItem key={k} value={k}>
@@ -79,9 +78,15 @@ export default ({ index, onOr, onDelete, showOrButton }) => {
 				{keySelection && config[keySelection].type === 'string' && (
 					<String onChange={value => toggleCondition(value)} conditionSelection={conditionSelection} />
 				)}
-
 				{keySelection && config[keySelection].type === 'multi_select' && (
-					<CustomSelect values={config[keySelection].values} />
+					<CustomSelect
+						values={config[keySelection].values}
+						conditionSelection={conditionSelection}
+						onConditionChange={value => toggleCondition(value)}
+					/>
+				)}
+				{keySelection && config[keySelection].type === 'date' && (
+					<DateTimePicker conditionSelection={conditionSelection} onConditionChange={value => toggleCondition(value)} />
 				)}
 			</Grid>
 

@@ -33,7 +33,9 @@ const MenuProps = {
 	}
 };
 
-export default ({ values }) => {
+const conditionValues = ['have values', 'not have values'];
+
+export default ({ values, conditionSelection, onConditionChange }) => {
 	const classes = useStyles();
 	const [value, handleValue] = useState([]);
 
@@ -43,22 +45,38 @@ export default ({ values }) => {
 	return (
 		<>
 			<Grid item>
-				<Typography className={classes['textDivider']}>should have values</Typography>
+				<Typography className={classes['textDivider']}>should</Typography>
 			</Grid>
 
 			<Grid item>
 				<FormControl className={classes['formControl']}>
-					<InputLabel id="demo-mutiple-chip-label">Values</InputLabel>
+					<InputLabel id="condition">Condition</InputLabel>
+					<Select
+						labelId="condition"
+						value={conditionSelection}
+						onChange={({ target: { value } }) => onConditionChange(value)}>
+						{conditionValues.map(v => {
+							return (
+								<MenuItem key={v} value={v}>
+									{v}
+								</MenuItem>
+							);
+						})}
+					</Select>
+				</FormControl>
+			</Grid>
+
+			<Grid item>
+				<FormControl className={classes['formControl']}>
+					<InputLabel id="multiple-select">Values</InputLabel>
 					<Select
 						multiple
 						value={value}
-						id="demo-mutiple-chip"
 						MenuProps={MenuProps}
-						labelId="demo-mutiple-chip-label"
+						labelId="multiple-select"
 						onChange={e => handleChange(e)}
 						input={<Input id="select-multiple-chip" />}
-						renderValue={selected => selected.join(', ')}
-					>
+						renderValue={selected => selected.join(', ')}>
 						{values.map(name => (
 							<MenuItem key={name} value={name}>
 								<Checkbox checked={value.indexOf(name) > -1} />
